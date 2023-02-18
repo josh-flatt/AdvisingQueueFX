@@ -297,7 +297,8 @@ public class MainMenuController {
     protected TableColumn<Meeting, String> meetingDurationColumn;
     @FXML
     protected void onMeetingsRefreshButtonClicked(ActionEvent event) {
-        tableView.setItems(FXCollections.observableArrayList(advisingQueueSystem.getMeetings()));
+        setDataTableAttributes();
+        tableView.refresh();
     }
     @FXML
     protected void onExportDataButtonPressed(ActionEvent event) {
@@ -312,11 +313,13 @@ public class MainMenuController {
     @FXML
     public void initialize() {
         studentAdvisorSelection.setItems(advisorList);
-
-        // set up columns in the table on condition that meetings already exist
-        if (!(advisingQueueSystem.getMeetings().size() > 0)) {
-            return;
+        if (advisingQueueSystem.getMeetings().size() > 0) {
+            setDataTableAttributes();
         }
+    }
+
+    protected void setDataTableAttributes() {
+        tableView.setItems(null);
         tableView.setItems(FXCollections.observableArrayList(advisingQueueSystem.getMeetings()));
         meetingIDColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("ID"));
         studentNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentFullName"));
