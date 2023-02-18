@@ -213,7 +213,7 @@ public class MainMenuController {
                                                Label meetingStudentLabel, Label meetingStudentEmailLabel, Label meetingTimeLabel) {
         queueCountLabel.setText("Students in Queue: " + advisorQueue.getQueueCount());
         if (advisorQueue.getCurrentMeeting() == null) { return; }
-        meetingTimeLabel.setText(advisorQueue.getCurrentMeeting().getDuration().getSeconds() + "s");
+        meetingTimeLabel.setText(advisorQueue.getCurrentMeeting().getTableDuration());
     }
     protected void advisorStartMeetingButtonClicked(AdvisorQueue advisorQueue, Label queueCountLabel,
                                                     Label meetingStudentLabel, Label meetingStudentEmailLabel, Label meetingTimeLabel) {

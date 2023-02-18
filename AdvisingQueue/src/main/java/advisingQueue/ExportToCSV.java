@@ -51,7 +51,8 @@ public class ExportToCSV {
             PrintWriter outFS = new PrintWriter(fileStream);
             String endDateTime = "";
             outFS.println("ID,Student,StudentEmail,Advisor," +
-                    "StartDateTime,EndDateTime,Duration");
+                    "StartDateTime,EndDateTime,Duration"
+            );
             for (Meeting meeting : meetings) {
                 endDateTime = meeting.getEndDateTime() + ""; // Handle null values
 
