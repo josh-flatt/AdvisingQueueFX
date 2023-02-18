@@ -3,8 +3,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.Duration;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 /**
  * @author Josh Flatt
