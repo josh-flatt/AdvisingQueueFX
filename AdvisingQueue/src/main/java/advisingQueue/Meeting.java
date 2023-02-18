@@ -1,7 +1,10 @@
 package advisingQueue;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.Duration;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  * @author Josh Flatt
@@ -24,6 +27,8 @@ public class Meeting {
     private String tableStudentFullName;
     private String tableStudentEmail;
     private String tableAdvisorFirstName;
+    private String tableStartTime;
+    private String tableEndTime;
     private String tableDuration;
 
     // Constructors
@@ -79,10 +84,23 @@ public class Meeting {
     public String getTableAdvisorFirstName() {
         return this.tableAdvisorFirstName;
     }
+    public String getTableStartTime() {
+        this.tableStartTime = this.startDateTime.format(DateTimeFormatter.ofPattern("hh:mm a"));
+        return this.tableStartTime;
+    }
+    public String getTableEndTime() {
+        if (this.endDateTime == null) {
+            this.tableEndTime = "";
+        }
+        if (this.endDateTime != null) {
+            this.tableEndTime = this.endDateTime.format(DateTimeFormatter.ofPattern("hh:mm a"));
+        }
+        return this.tableEndTime;
+    }
     public String getTableDuration() {
         long minutes = this.getDuration().toMinutes();
         long seconds = this.getDuration().getSeconds() % 60;
-        this.tableDuration = minutes +"m "+ seconds +"s";
+        this.tableDuration = String.format("%dm %ds", minutes, seconds);
         return this.tableDuration;
     }
 

@@ -325,8 +325,8 @@ public class MainMenuController {
         studentNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentFullName"));
         studentEmailColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentEmail"));
         advisorFirstNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableAdvisorFirstName"));
-        meetingStartColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("startDateTime"));
-        meetingEndColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("endDateTime"));
+        meetingStartColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("tableStartTime"));
+        meetingEndColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("tableEndTime"));
         meetingDurationColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableDuration"));
     }
 }
