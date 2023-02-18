@@ -22,10 +22,8 @@ public class ExportToCSV {
     public void descendSortByDuration() {
         int meetingCount = meetings.size();
         for (int i = 1; i < meetingCount; ++i) {
-
             int j = i;
             while (j > 0 && meetings.get(j).getDuration().compareTo(meetings.get(j - 1).getDuration()) > 0) {
-
                 Meeting temp = meetings.get(j);
                 meetings.set(j, meetings.get(j - 1));
                 meetings.set(j - 1, temp);
@@ -36,10 +34,8 @@ public class ExportToCSV {
     public void ascendSortByStartTimeDate() {
         int meetingCount = meetings.size();
         for (int i = 1; i < meetingCount; ++i) {
-
             int j = i;
             while (j > 0 && meetings.get(j).getStartDateTime().compareTo(meetings.get(j - 1).getStartDateTime()) > 0) {
-
                 Meeting temp = meetings.get(j);
                 meetings.set(j, meetings.get(j - 1));
                 meetings.set(j - 1, temp);
@@ -54,14 +50,20 @@ public class ExportToCSV {
             FileOutputStream fileStream = new FileOutputStream("meetingExport.csv");
             PrintWriter outFS = new PrintWriter(fileStream);
             String endDateTime = "";
-            outFS.println("ID" + "," + "Student" + "," + "StudentEmail" + "," + "Advisor" + ","
-                    + "StartDateTime" + "," + "EndDateTime" + "," + "Duration");
+            outFS.println("ID,Student,StudentEmail,Advisor," +
+                    "StartDateTime,EndDateTime,Duration");
             for (Meeting meeting : meetings) {
                 endDateTime = meeting.getEndDateTime() + ""; // Handle null values
 
-                outFS.println(meeting.getID() + "," + meeting.getTableStudentFullName() + ","
-                        + meeting.getTableStudentEmail() + "," + meeting.getTableAdvisorFirstName() + ","
-                        + meeting.getStartDateTime() + "," + endDateTime + "," + meeting.getTableDuration());
+                outFS.printf("%d,%s,%s,%s,%s,%s,%s%n",
+                        meeting.getID(),
+                        meeting.getTableStudentFullName(),
+                        meeting.getTableStudentEmail(),
+                        meeting.getTableAdvisorFirstName(),
+                        meeting.getStartDateTime(),
+                        endDateTime,
+                        meeting.getTableDuration()
+                );
             }
             outFS.close();
 

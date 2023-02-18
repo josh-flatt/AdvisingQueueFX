@@ -212,9 +212,8 @@ public class MainMenuController {
     protected void advisorRefreshButtonClicked(AdvisorQueue advisorQueue, Label queueCountLabel,
                                                Label meetingStudentLabel, Label meetingStudentEmailLabel, Label meetingTimeLabel) {
         queueCountLabel.setText("Students in Queue: " + advisorQueue.getQueueCount());
-        if (advisorQueue.getCurrentMeeting() != null) {
-            meetingTimeLabel.setText(advisorQueue.getCurrentMeeting().getDuration().getSeconds() + "s");
-        }
+        if (advisorQueue.getCurrentMeeting() == null) { return; }
+        meetingTimeLabel.setText(advisorQueue.getCurrentMeeting().getDuration().getSeconds() + "s");
     }
     protected void advisorStartMeetingButtonClicked(AdvisorQueue advisorQueue, Label queueCountLabel,
                                                     Label meetingStudentLabel, Label meetingStudentEmailLabel, Label meetingTimeLabel) {
@@ -304,7 +303,7 @@ public class MainMenuController {
     protected void onExportDataButtonPressed(ActionEvent event) {
         advisingQueueSystem.exportMeetings();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Notification");
+        alert.setTitle("Success");
         alert.setContentText("Data Successfully exported.");
         alert.showAndWait();
     }
@@ -315,15 +314,16 @@ public class MainMenuController {
         studentAdvisorSelection.setItems(advisorList);
 
         // set up columns in the table on condition that meetings already exist
-        if (advisingQueueSystem.getMeetings().size() > 0) {
-            tableView.setItems(FXCollections.observableArrayList(advisingQueueSystem.getMeetings()));
-            meetingIDColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("ID"));
-            studentNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentFullName"));
-            studentEmailColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentEmail"));
-            advisorFirstNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableAdvisorFirstName"));
-            meetingStartColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("startDateTime"));
-            meetingEndColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("endDateTime"));
-            meetingDurationColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableDuration"));
+        if (!(advisingQueueSystem.getMeetings().size() > 0)) {
+            return;
         }
+        tableView.setItems(FXCollections.observableArrayList(advisingQueueSystem.getMeetings()));
+        meetingIDColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("ID"));
+        studentNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentFullName"));
+        studentEmailColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentEmail"));
+        advisorFirstNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableAdvisorFirstName"));
+        meetingStartColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("startDateTime"));
+        meetingEndColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("endDateTime"));
+        meetingDurationColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableDuration"));
     }
 }
