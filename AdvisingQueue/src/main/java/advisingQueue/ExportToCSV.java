@@ -50,19 +50,21 @@ public class ExportToCSV {
             FileOutputStream fileStream = new FileOutputStream("meetingExport.csv");
             PrintWriter outFS = new PrintWriter(fileStream);
             String endDateTime = "";
-            outFS.println("ID,Student,StudentEmail,Advisor," +
+            outFS.println("ID,StudentLastName,StudentFirstName,StudentEmail,Advisor," +
                     "StartDateTime,EndDateTime,Duration"
             );
             for (Meeting meeting : meetings) {
-                endDateTime = meeting.getEndDateTime() + ""; // Handle null values
+//                endDateTime = meeting.getEndDateTime() + ""; // Handle null values
 
-                outFS.printf("%d,%s,%s,%s,%s,%s,%s%n",
+                outFS.printf("%d,%s,%s,%s,%s,%s,%s,%s%n",
                         meeting.getID(),
-                        meeting.getTableStudentFullName(),
+                        meeting.getTableStudentLastName(),
+                        meeting.getTableStudentFirstName(),
                         meeting.getTableStudentEmail(),
                         meeting.getTableAdvisorFirstName(),
                         meeting.getStartDateTime(),
-                        endDateTime,
+//                        endDateTime,
+                        meeting.getTableEndTime(),
                         meeting.getTableDuration()
                 );
             }

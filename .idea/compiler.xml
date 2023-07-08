@@ -9,8 +9,5 @@
         <module name="AdvisingQueue" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="AdvisingQueue" target="19" />
-    </bytecodeTargetLevel>
   </component>
 </project>

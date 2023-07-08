@@ -23,6 +23,8 @@ public class Meeting {
 
     // Fields used only for UI display/export
     private String tableStudentFullName;
+    private String tableStudentFirstName;
+    private String tableStudentLastName;
     private String tableStudentEmail;
     private String tableAdvisorFirstName;
     private String tableStartTime;
@@ -35,6 +37,8 @@ public class Meeting {
         this.ID = meetingcount;
         this.student = student;
         this.tableStudentFullName = student.getFullName();
+        this.tableStudentFirstName = student.getFirstName();
+        this.tableStudentLastName = student.getLastName();
         this.tableStudentEmail = student.getEmail();
         this.advisor = advisor;
         this.tableAdvisorFirstName = advisor.getFirstName();
@@ -75,6 +79,12 @@ public class Meeting {
     //Getters only for UI display/export
     public String getTableStudentFullName() {
         return this.tableStudentFullName;
+    }
+    public String getTableStudentFirstName() {
+        return this.tableStudentFirstName;
+    }
+    public String getTableStudentLastName() {
+        return this.tableStudentLastName;
     }
     public String getTableStudentEmail() {
         return this.tableStudentEmail;
