@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,7 +21,7 @@ import advisingQueue.*;
  */
 public class MainMenuController {
 
-    private AdvisingQueueSystem advisingQueueSystem = new AdvisingQueueSystem();
+    protected AdvisingQueueSystem advisingQueueSystem = new AdvisingQueueSystem();
     private AdvisorQueue cjAQ = advisingQueueSystem
             .CreateAdvisorQueueA(new Advisor("CJ", "Cron", "firstBaseman@rockies.com"));
     private AdvisorQueue brendanAQ = advisingQueueSystem
@@ -29,8 +30,7 @@ public class MainMenuController {
             .CreateAdvisorQueueC(new Advisor("Alan", "Trejo", "shortstop@rockies.com"));
     private AdvisorQueue ryanAQ = advisingQueueSystem
             .CreateAdvisorQueueD(new Advisor("Ryan", "McMahon", "thirdBaseman@rockies.com"));
-//    protected ObservableList<String> advisorList =
-//            FXCollections.observableArrayList("CJ", "Brendan", "Alan", "Ryan");
+
 
 
     // Student Page
@@ -290,68 +290,66 @@ public class MainMenuController {
         }
     }
 
-    // Data
-    @FXML
-    protected Button meetingsRefreshButton;
-    @FXML
-    protected Button exportDataButton;
-    @FXML
-    protected TableView<Meeting> tableView;
-    @FXML
-    protected TableColumn<Meeting, String> meetingIDColumn;
-    @FXML
-    protected TableColumn<Meeting, String> studentNameColumn;
-    @FXML
-    protected TableColumn<Meeting, String> studentEmailColumn;
-    @FXML
-    protected TableColumn<Meeting, String> advisorFirstNameColumn;
-    @FXML
-    protected TableColumn<Meeting, String> meetingStartColumn;
-    @FXML
-    protected TableColumn<Meeting, String> meetingEndColumn;
-    @FXML
-    protected TableColumn<Meeting, String> meetingDurationColumn;
-    @FXML
-    protected void onMeetingsRefreshButtonClicked(ActionEvent event) {
-        setDataTableAttributes();
-        tableView.refresh();
-    }
-    @FXML
-    protected void onExportDataButtonPressed(ActionEvent event) {
-        advisingQueueSystem.exportMeetings();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success");
-        alert.setContentText("Data Successfully exported.");
-        alert.showAndWait();
-    }
+//    // Data
+//    @FXML
+//    protected Button meetingsRefreshButton;
+//    @FXML
+//    protected Button exportDataButton;
+//    @FXML
+//    protected TableView<Meeting> tableView;
+//    @FXML
+//    protected TableColumn<Meeting, String> meetingIDColumn;
+//    @FXML
+//    protected TableColumn<Meeting, String> studentNameColumn;
+//    @FXML
+//    protected TableColumn<Meeting, String> studentEmailColumn;
+//    @FXML
+//    protected TableColumn<Meeting, String> advisorFirstNameColumn;
+//    @FXML
+//    protected TableColumn<Meeting, String> meetingStartColumn;
+//    @FXML
+//    protected TableColumn<Meeting, String> meetingEndColumn;
+//    @FXML
+//    protected TableColumn<Meeting, String> meetingDurationColumn;
+//    @FXML
+//    protected void onMeetingsRefreshButtonClicked(ActionEvent event) {
+//        setDataTableAttributes();
+//        tableView.refresh();
+//    }
+//    @FXML
+//    protected void onExportDataButtonPressed(ActionEvent event) {
+//        advisingQueueSystem.exportMeetings();
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("Success");
+//        alert.setContentText("Data Successfully exported.");
+//        alert.showAndWait();
+//    }
 
     // Initialize
 
+    @FXML
+    private TabDataController tabDataController;
+    @FXML
+    private TabTestController tabTestController;
     public void initialize() {
-
-//        studentAdvisorSelection = new ComboBox<String>();
-//        studentAdvisorSelection.getItems().addAll("CJ", "Brendan", "Alan", "Ryan");
+        MediatorController.setMainMenuController(this);
+        MediatorController.setTabDataController(tabDataController);
+        MediatorController.setTabTestController(tabTestController);
         if (advisingQueueSystem.getMeetings().size() > 0) {
-            setDataTableAttributes();
+            MediatorController.tabDataController.setDataTableAttributes();
+//            setDataTableAttributes();
         }
     }
 
-    protected void setDataTableAttributes() {
-        tableView.setItems(null);
-        tableView.setItems(FXCollections.observableArrayList(advisingQueueSystem.getMeetings()));
-//        meetingIDColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("ID"));
-        meetingIDColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableID()));
-//        studentNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentFullName"));
-        studentNameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStudentFullName()));
-//        studentEmailColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentEmail"));
-        studentEmailColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStudentEmail()));
-//        advisorFirstNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableAdvisorFirstName"));
-        advisorFirstNameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableAdvisorFirstName()));
-//        meetingStartColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("tableStartTime"));
-        meetingStartColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStartTime()));
-//        meetingEndColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("tableEndTime"));
-        meetingEndColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableEndTime()));
-//        meetingDurationColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableDuration"));
-        meetingDurationColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableDuration()));
-    }
+//    protected void setDataTableAttributes() {
+//        tableView.setItems(null);
+//        tableView.setItems(FXCollections.observableArrayList(advisingQueueSystem.getMeetings()));
+//        meetingIDColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableID()));
+//        studentNameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStudentFullName()));
+//        studentEmailColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStudentEmail()));
+//        advisorFirstNameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableAdvisorFirstName()));
+//        meetingStartColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStartTime()));
+//        meetingEndColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableEndTime()));
+//        meetingDurationColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableDuration()));
+//    }
 }
