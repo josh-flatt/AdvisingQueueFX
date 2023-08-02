@@ -1,4 +1,6 @@
-package com.example.advisingqueue;
+package net.incandescently.advisingqueuefx;
+
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -290,9 +292,9 @@ public class MainMenuController {
     @FXML
     protected TableColumn<Meeting, String> advisorFirstNameColumn;
     @FXML
-    protected TableColumn<Meeting, LocalDateTime> meetingStartColumn;
+    protected TableColumn<Meeting, String> meetingStartColumn;
     @FXML
-    protected TableColumn<Meeting, LocalDateTime> meetingEndColumn;
+    protected TableColumn<Meeting, String> meetingEndColumn;
     @FXML
     protected TableColumn<Meeting, String> meetingDurationColumn;
     @FXML
@@ -321,12 +323,19 @@ public class MainMenuController {
     protected void setDataTableAttributes() {
         tableView.setItems(null);
         tableView.setItems(FXCollections.observableArrayList(advisingQueueSystem.getMeetings()));
-        meetingIDColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("ID"));
-        studentNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentFullName"));
-        studentEmailColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentEmail"));
-        advisorFirstNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableAdvisorFirstName"));
-        meetingStartColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("tableStartTime"));
-        meetingEndColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("tableEndTime"));
-        meetingDurationColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableDuration"));
+//        meetingIDColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("ID"));
+        meetingIDColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableID()));
+//        studentNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentFullName"));
+        studentNameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStudentFullName()));
+//        studentEmailColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentEmail"));
+        studentEmailColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStudentEmail()));
+//        advisorFirstNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableAdvisorFirstName"));
+        advisorFirstNameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableAdvisorFirstName()));
+//        meetingStartColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("tableStartTime"));
+        meetingStartColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStartTime()));
+//        meetingEndColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("tableEndTime"));
+        meetingEndColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableEndTime()));
+//        meetingDurationColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableDuration"));
+        meetingDurationColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableDuration()));
     }
 }

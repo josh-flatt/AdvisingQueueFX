@@ -77,6 +77,9 @@ public class Meeting {
     }
 
     //Getters only for UI display/export
+    public String getTableID() {
+        return this.ID.toString();
+    }
     public String getTableStudentFullName() {
         return this.tableStudentFullName;
     }

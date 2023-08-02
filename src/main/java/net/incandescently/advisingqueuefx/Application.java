@@ -1,4 +1,4 @@
-package com.example.advisingqueue;
+package net.incandescently.advisingqueuefx;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
