@@ -1,12 +1,16 @@
-package net.incandescently.advisingqueuefx;
-
-import javafx.beans.property.ReadOnlyStringWrapper;
+package com.example.advisingqueue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDateTime;
@@ -20,48 +24,29 @@ import advisingQueue.*;
  */
 public class MainMenuController {
 
-    private AdvisingQueueSystem advisingQueueSystem = new AdvisingQueueSystem();
-    private AdvisorQueue cjAQ = advisingQueueSystem
+    protected AdvisingQueueSystem advisingQueueSystem = new AdvisingQueueSystem();
+    protected AdvisorQueue cjAQ = advisingQueueSystem
             .CreateAdvisorQueueA(new Advisor("CJ", "Cron", "firstBaseman@rockies.com"));
-    private AdvisorQueue brendanAQ = advisingQueueSystem
+    protected AdvisorQueue brendanAQ = advisingQueueSystem
             .CreateAdvisorQueueB(new Advisor("Brendan", "Rodgers", "secondBaseman@rockies.com"));
-    private AdvisorQueue alanAQ = advisingQueueSystem
+    protected AdvisorQueue alanAQ = advisingQueueSystem
             .CreateAdvisorQueueC(new Advisor("Alan", "Trejo", "shortstop@rockies.com"));
-    private AdvisorQueue ryanAQ = advisingQueueSystem
+    protected AdvisorQueue ryanAQ = advisingQueueSystem
             .CreateAdvisorQueueD(new Advisor("Ryan", "McMahon", "thirdBaseman@rockies.com"));
-//    protected ObservableList<String> advisorList =
-//            FXCollections.observableArrayList("CJ", "Brendan", "Alan", "Ryan");
-
+    protected ObservableList<String> advisorList = FXCollections
+            .observableArrayList("CJ", "Brendan", "Alan", "Ryan");
 
     // Student Page
     @FXML
-    private Button studentSubmitButton;
+    protected Button studentSubmitButton;
     @FXML
-    private TextField studentFirstName;
+    protected TextField studentFirstName;
     @FXML
-    private TextField studentLastName;
+    protected TextField studentLastName;
     @FXML
-    private TextField studentEmail;
-//    @FXML
-//    private ComboBox<String> studentAdvisorSelection;
+    protected TextField studentEmail;
     @FXML
-    private RadioButton advisorRadioCJ, advisorRadioBrendan, advisorRadioAlan, advisorRadioRyan;
-
-    private String getSelectedAdvisor() {
-        if(advisorRadioCJ.isSelected()) {
-            return "CJ";
-        }
-        if(advisorRadioBrendan.isSelected()) {
-            return "Brendan";
-        }
-        if(advisorRadioAlan.isSelected()) {
-            return "Alan";
-        }
-        if(advisorRadioRyan.isSelected()) {
-            return "Ryan";
-        }
-        return "";
-    }
+    protected ComboBox<String> studentAdvisorSelection;
     @FXML
     protected void onStudentSubmitButtonClicked(ActionEvent event) {
         try {
@@ -69,8 +54,7 @@ public class MainMenuController {
             String firstName = this.studentFirstName.getText();
             String lastName = this.studentLastName.getText();
             String email = this.studentEmail.getText();
-//            String advisor = this.studentAdvisorSelection.getValue();
-            String advisor = getSelectedAdvisor();
+            String advisor = this.studentAdvisorSelection.getValue();
 
             Student student = new Student(firstName, lastName, email);
             if (advisor.equals("CJ")) {
@@ -306,9 +290,9 @@ public class MainMenuController {
     @FXML
     protected TableColumn<Meeting, String> advisorFirstNameColumn;
     @FXML
-    protected TableColumn<Meeting, String> meetingStartColumn;
+    protected TableColumn<Meeting, LocalDateTime> meetingStartColumn;
     @FXML
-    protected TableColumn<Meeting, String> meetingEndColumn;
+    protected TableColumn<Meeting, LocalDateTime> meetingEndColumn;
     @FXML
     protected TableColumn<Meeting, String> meetingDurationColumn;
     @FXML
@@ -326,11 +310,9 @@ public class MainMenuController {
     }
 
     // Initialize
-
-    public void initialize() {
-
-//        studentAdvisorSelection = new ComboBox<String>();
-//        studentAdvisorSelection.getItems().addAll("CJ", "Brendan", "Alan", "Ryan");
+    @FXML
+    protected void initialize() {
+        studentAdvisorSelection.setItems(advisorList);
         if (advisingQueueSystem.getMeetings().size() > 0) {
             setDataTableAttributes();
         }
@@ -339,19 +321,12 @@ public class MainMenuController {
     protected void setDataTableAttributes() {
         tableView.setItems(null);
         tableView.setItems(FXCollections.observableArrayList(advisingQueueSystem.getMeetings()));
-//        meetingIDColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("ID"));
-        meetingIDColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableID()));
-//        studentNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentFullName"));
-        studentNameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStudentFullName()));
-//        studentEmailColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentEmail"));
-        studentEmailColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStudentEmail()));
-//        advisorFirstNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableAdvisorFirstName"));
-        advisorFirstNameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableAdvisorFirstName()));
-//        meetingStartColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("tableStartTime"));
-        meetingStartColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStartTime()));
-//        meetingEndColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("tableEndTime"));
-        meetingEndColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableEndTime()));
-//        meetingDurationColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableDuration"));
-        meetingDurationColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableDuration()));
+        meetingIDColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("ID"));
+        studentNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentFullName"));
+        studentEmailColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentEmail"));
+        advisorFirstNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableAdvisorFirstName"));
+        meetingStartColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("tableStartTime"));
+        meetingEndColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("tableEndTime"));
+        meetingDurationColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableDuration"));
     }
 }

@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -22,57 +17,52 @@
 <!--    <padding>-->
 <!--        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>-->
 <!--    </padding>-->
-
 <!--    <Label fx:id="welcomeText"/>-->
 <!--    <Button text="Hello!" onAction="#onHelloButtonClick"/>-->
 <!--</VBox>-->
-
 <!--        xmlns:fx="http://javafx.com/fxml"-->
+<!--        onSelectionChanged="#initialize"-->
 
-<BorderPane prefHeight="600.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1"
-
-            fx:controller="net.incandescently.advisingqueuefx.MainMenuController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.incandescently.advisingqueuefx.MainMenuController">
     <center>
         <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
             <tabs>
-                <Tab onSelectionChanged="#initialize" text="Student">
+                <Tab text="Student">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TextField fx:id="studentFirstName" layoutX="248.0" layoutY="42.0" promptText="ex: John">
+                                <TextField fx:id="studentFirstName" layoutX="249.0" layoutY="21.0" promptText="ex: John">
                                     <font>
                                         <Font size="36.0" />
                                     </font>
                                 </TextField>
-                                <TextField fx:id="studentLastName" layoutX="248.0" layoutY="142.0" promptText="Doe">
+                                <TextField fx:id="studentLastName" layoutX="249.0" layoutY="121.0" promptText="Doe">
                                     <font>
                                         <Font size="36.0" />
                                     </font>
                                 </TextField>
-                                <TextField fx:id="studentEmail" layoutX="248.0" layoutY="240.0" promptText="you@example.com">
+                                <TextField fx:id="studentEmail" layoutX="249.0" layoutY="219.0" promptText="you@example.com">
                                     <font>
                                         <Font size="36.0" />
                                     </font>
                                 </TextField>
-                                <ComboBox fx:id="studentAdvisorSelection" editable="true" layoutX="248.0" layoutY="335.0" prefHeight="57.0" prefWidth="230.0" promptText="Select an Advisor" />
+<!--                                <ComboBox fx:id="studentAdvisorSelection" editable="true" layoutX="556.0" layoutY="435.0" prefHeight="57.0" prefWidth="230.0" promptText="Select an Advisor" />-->
                                 <Button fx:id="studentSubmitButton" layoutX="248.0" layoutY="412.0" mnemonicParsing="false" onAction="#onStudentSubmitButtonClicked" text="Get in Line!">
                                     <font>
                                         <Font size="48.0" />
                                     </font>
                                 </Button>
-                                <Label layoutX="42.0" layoutY="54.0" text="First Name:">
+                                <Label layoutX="43.0" layoutY="33.0" text="First Name:">
                                     <font>
                                         <Font size="36.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="44.0" layoutY="154.0" text="Last Name:">
+                                <Label layoutX="45.0" layoutY="133.0" text="Last Name:">
                                     <font>
                                         <Font size="36.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="86.0" layoutY="252.0" text="Email:">
+                                <Label layoutX="87.0" layoutY="231.0" text="Email:">
                                     <font>
                                         <Font size="36.0" />
                                     </font>
@@ -82,6 +72,26 @@
                                         <Font size="36.0" />
                                     </font>
                                 </Label>
+                        <RadioButton fx:id="advisorRadioCJ" layoutX="255.0" layoutY="322.0" mnemonicParsing="false" text="CJ">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="advisorRadioRyan" layoutX="431.0" layoutY="366.0" mnemonicParsing="false" text="Ryan">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="advisorRadioBrendan" layoutX="255.0" layoutY="366.0" mnemonicParsing="false" text="Brendan">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="advisorRadioAlan" layoutX="431.0" layoutY="322.0" mnemonicParsing="false" text="Alan">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
                             </children></AnchorPane>
                     </content>
                 </Tab>
@@ -349,37 +359,43 @@
                             </children></AnchorPane>
                     </content>
                 </Tab>
+                <Tab text="Test">
+                    <content>
+                        <fx:include source="tab-Test.fxml" />
+                    </content>
+                </Tab>
                 <Tab text="Meetings">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <TableView fx:id="tableView" layoutX="19.0" layoutY="78.0" prefHeight="400.0" prefWidth="762.0">
-                                    <columns>
-                                        <TableColumn fx:id="meetingIDColumn" prefWidth="63.0" text="Meeting #" />
-                                        <TableColumn fx:id="studentNameColumn" prefWidth="146.0" text="Student" />
-                                        <TableColumn fx:id="studentEmailColumn" prefWidth="119.0" text="Student email" />
-                                        <TableColumn fx:id="advisorFirstNameColumn" prefWidth="102.0" text="Advisor" />
-                                        <TableColumn fx:id="meetingStartColumn" prefWidth="126.0" text="Start time" />
-                                        <TableColumn fx:id="meetingEndColumn" prefWidth="118.0" text="End time" />
-                                        <TableColumn fx:id="meetingDurationColumn" minWidth="0.0" prefWidth="86.0" text="Duration" />
-                                    </columns>
-                                </TableView>
-                                <Label layoutX="321.0" layoutY="14.0" text="Meetings" underline="true">
-                                    <font>
-                                        <Font name="System Bold" size="36.0" />
-                                    </font>
-                                </Label>
-                                <Button fx:id="meetingsRefreshButton" layoutX="675.0" layoutY="14.0" mnemonicParsing="false" onAction="#onMeetingsRefreshButtonClicked" prefHeight="38.0" prefWidth="106.0" text="Refresh Data">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Button>
-                                <Button fx:id="exportDataButton" layoutX="346.0" layoutY="503.0" mnemonicParsing="false" onAction="#onExportDataButtonPressed" prefHeight="41.0" prefWidth="109.0" text="Export Data">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Button>
-                            </children></AnchorPane>
+                        <fx:include source="tab-Data.fxml" />
+<!--                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
+<!--                            <children>-->
+<!--                                <TableView fx:id="tableView" layoutX="19.0" layoutY="78.0" prefHeight="400.0" prefWidth="762.0">-->
+<!--                                    <columns>-->
+<!--                                        <TableColumn fx:id="meetingIDColumn" prefWidth="63.0" text="Meeting #" />-->
+<!--                                        <TableColumn fx:id="studentNameColumn" prefWidth="146.0" text="Student" />-->
+<!--                                        <TableColumn fx:id="studentEmailColumn" prefWidth="119.0" text="Student email" />-->
+<!--                                        <TableColumn fx:id="advisorFirstNameColumn" prefWidth="102.0" text="Advisor" />-->
+<!--                                        <TableColumn fx:id="meetingStartColumn" prefWidth="126.0" text="Start time" />-->
+<!--                                        <TableColumn fx:id="meetingEndColumn" prefWidth="118.0" text="End time" />-->
+<!--                                        <TableColumn fx:id="meetingDurationColumn" minWidth="0.0" prefWidth="86.0" text="Duration" />-->
+<!--                                    </columns>-->
+<!--                                </TableView>-->
+<!--                                <Label layoutX="321.0" layoutY="14.0" text="Meetings" underline="true">-->
+<!--                                    <font>-->
+<!--                                        <Font name="System Bold" size="36.0" />-->
+<!--                                    </font>-->
+<!--                                </Label>-->
+<!--                                <Button fx:id="meetingsRefreshButton" layoutX="675.0" layoutY="14.0" mnemonicParsing="false" onAction="#onMeetingsRefreshButtonClicked" prefHeight="38.0" prefWidth="106.0" text="Refresh Data">-->
+<!--                                    <font>-->
+<!--                                        <Font size="14.0" />-->
+<!--                                    </font>-->
+<!--                                </Button>-->
+<!--                                <Button fx:id="exportDataButton" layoutX="346.0" layoutY="503.0" mnemonicParsing="false" onAction="#onExportDataButtonPressed" prefHeight="41.0" prefWidth="109.0" text="Export Data">-->
+<!--                                    <font>-->
+<!--                                        <Font size="14.0" />-->
+<!--                                    </font>-->
+<!--                                </Button>-->
+<!--                            </children></AnchorPane>-->
                     </content>
                 </Tab>
             </tabs>
