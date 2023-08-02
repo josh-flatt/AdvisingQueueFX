@@ -22,83 +22,82 @@ import advisingQueue.*;
 public class MainMenuController {
 
     protected AdvisingQueueSystem advisingQueueSystem = new AdvisingQueueSystem();
-    private AdvisorQueue cjAQ = advisingQueueSystem
+    protected AdvisorQueue cjAQ = advisingQueueSystem
             .CreateAdvisorQueueA(new Advisor("CJ", "Cron", "firstBaseman@rockies.com"));
-    private AdvisorQueue brendanAQ = advisingQueueSystem
+    protected AdvisorQueue brendanAQ = advisingQueueSystem
             .CreateAdvisorQueueB(new Advisor("Brendan", "Rodgers", "secondBaseman@rockies.com"));
-    private AdvisorQueue alanAQ = advisingQueueSystem
+    protected AdvisorQueue alanAQ = advisingQueueSystem
             .CreateAdvisorQueueC(new Advisor("Alan", "Trejo", "shortstop@rockies.com"));
-    private AdvisorQueue ryanAQ = advisingQueueSystem
+    protected AdvisorQueue ryanAQ = advisingQueueSystem
             .CreateAdvisorQueueD(new Advisor("Ryan", "McMahon", "thirdBaseman@rockies.com"));
 
 
 
-    // Student Page
-    @FXML
-    private Button studentSubmitButton;
-    @FXML
-    private TextField studentFirstName;
-    @FXML
-    private TextField studentLastName;
-    @FXML
-    private TextField studentEmail;
+//    // Student Page
 //    @FXML
-//    private ComboBox<String> studentAdvisorSelection;
-    @FXML
-    private RadioButton advisorRadioCJ, advisorRadioBrendan, advisorRadioAlan, advisorRadioRyan;
-
-    private String getSelectedAdvisor() {
-        if(advisorRadioCJ.isSelected()) {
-            return "CJ";
-        }
-        if(advisorRadioBrendan.isSelected()) {
-            return "Brendan";
-        }
-        if(advisorRadioAlan.isSelected()) {
-            return "Alan";
-        }
-        if(advisorRadioRyan.isSelected()) {
-            return "Ryan";
-        }
-        return "";
-    }
-    @FXML
-    protected void onStudentSubmitButtonClicked(ActionEvent event) {
-        try {
-            boolean validAdvisor = false;
-            String firstName = this.studentFirstName.getText();
-            String lastName = this.studentLastName.getText();
-            String email = this.studentEmail.getText();
-//            String advisor = this.studentAdvisorSelection.getValue();
-            String advisor = getSelectedAdvisor();
-
-            Student student = new Student(firstName, lastName, email);
-            if (advisor.equals("CJ")) {
-                cjAQ.addStudent(student);
-                validAdvisor = true;
-            }
-            if (advisor.equals("Brendan")) {
-                brendanAQ.addStudent(student);
-                validAdvisor = true;
-            }
-            if (advisor.equals("Alan")) {
-                alanAQ.addStudent(student);
-                validAdvisor = true;
-            }
-            if (advisor.equals("Ryan")) {
-                ryanAQ.addStudent(student);
-                validAdvisor = true;
-            }
-            else if (!validAdvisor) {
-                throw new Exception();
-            }
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Alert");
-            alert.setContentText("Please select one of the advisors.");
-            alert.showAndWait();
-        }
-    }
+//    private Button studentSubmitButton;
+//    @FXML
+//    private TextField studentFirstName;
+//    @FXML
+//    private TextField studentLastName;
+//    @FXML
+//    private TextField studentEmail;
+////    @FXML
+////    private ComboBox<String> studentAdvisorSelection;
+//    @FXML
+//    private RadioButton advisorRadioCJ, advisorRadioBrendan, advisorRadioAlan, advisorRadioRyan;
+//
+//    private String getSelectedAdvisor() {
+//        if(advisorRadioCJ.isSelected()) {
+//            return "CJ";
+//        }
+//        if(advisorRadioBrendan.isSelected()) {
+//            return "Brendan";
+//        }
+//        if(advisorRadioAlan.isSelected()) {
+//            return "Alan";
+//        }
+//        if(advisorRadioRyan.isSelected()) {
+//            return "Ryan";
+//        }
+//        return "";
+//    }
+//    @FXML
+//    protected void onStudentSubmitButtonClicked(ActionEvent event) {
+//        try {
+//            boolean validAdvisor = false;
+//            String firstName = this.studentFirstName.getText();
+//            String lastName = this.studentLastName.getText();
+//            String email = this.studentEmail.getText();
+//            String advisor = getSelectedAdvisor();
+//
+//            Student student = new Student(firstName, lastName, email);
+//            if (advisor.equals("CJ")) {
+//                cjAQ.addStudent(student);
+//                validAdvisor = true;
+//            }
+//            if (advisor.equals("Brendan")) {
+//                brendanAQ.addStudent(student);
+//                validAdvisor = true;
+//            }
+//            if (advisor.equals("Alan")) {
+//                alanAQ.addStudent(student);
+//                validAdvisor = true;
+//            }
+//            if (advisor.equals("Ryan")) {
+//                ryanAQ.addStudent(student);
+//                validAdvisor = true;
+//            }
+//            else if (!validAdvisor) {
+//                throw new Exception();
+//            }
+//        } catch (Exception e) {
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Alert");
+//            alert.setContentText("Please select one of the advisors.");
+//            alert.showAndWait();
+//        }
+//    }
 
     // Advisor CJ
     @FXML
@@ -290,40 +289,6 @@ public class MainMenuController {
         }
     }
 
-//    // Data
-//    @FXML
-//    protected Button meetingsRefreshButton;
-//    @FXML
-//    protected Button exportDataButton;
-//    @FXML
-//    protected TableView<Meeting> tableView;
-//    @FXML
-//    protected TableColumn<Meeting, String> meetingIDColumn;
-//    @FXML
-//    protected TableColumn<Meeting, String> studentNameColumn;
-//    @FXML
-//    protected TableColumn<Meeting, String> studentEmailColumn;
-//    @FXML
-//    protected TableColumn<Meeting, String> advisorFirstNameColumn;
-//    @FXML
-//    protected TableColumn<Meeting, String> meetingStartColumn;
-//    @FXML
-//    protected TableColumn<Meeting, String> meetingEndColumn;
-//    @FXML
-//    protected TableColumn<Meeting, String> meetingDurationColumn;
-//    @FXML
-//    protected void onMeetingsRefreshButtonClicked(ActionEvent event) {
-//        setDataTableAttributes();
-//        tableView.refresh();
-//    }
-//    @FXML
-//    protected void onExportDataButtonPressed(ActionEvent event) {
-//        advisingQueueSystem.exportMeetings();
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Success");
-//        alert.setContentText("Data Successfully exported.");
-//        alert.showAndWait();
-//    }
 
     // Initialize
 
@@ -337,19 +302,7 @@ public class MainMenuController {
         MediatorController.setTabTestController(tabTestController);
         if (advisingQueueSystem.getMeetings().size() > 0) {
             MediatorController.tabDataController.setDataTableAttributes();
-//            setDataTableAttributes();
         }
     }
 
-//    protected void setDataTableAttributes() {
-//        tableView.setItems(null);
-//        tableView.setItems(FXCollections.observableArrayList(advisingQueueSystem.getMeetings()));
-//        meetingIDColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableID()));
-//        studentNameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStudentFullName()));
-//        studentEmailColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStudentEmail()));
-//        advisorFirstNameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableAdvisorFirstName()));
-//        meetingStartColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStartTime()));
-//        meetingEndColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableEndTime()));
-//        meetingDurationColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableDuration()));
-//    }
 }
