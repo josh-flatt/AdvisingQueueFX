@@ -23,6 +23,8 @@ public class MainMenuController {
 
 
     // Initialize
+
+    private AdvisorController advisorController;
     @FXML
     private TabRegisterController tabRegisterController;
     @FXML
@@ -37,7 +39,9 @@ public class MainMenuController {
     private TabDataController tabDataController;
 
     public void initialize() {
+        advisorController = new AdvisorController();
         MediatorController.setMainMenuController(this);
+        MediatorController.setAdvisorController(advisorController);
         MediatorController.setTabRegisterController(tabRegisterController);
         MediatorController.setTabAdvisorAlanController(tabAdvisorAlanController);
         MediatorController.setTabAdvisorBrendanController(tabAdvisorBrendanController);
