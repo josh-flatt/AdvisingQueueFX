@@ -1,7 +1,8 @@
 package net.incandescently.advisingqueuefx;
 
 public abstract class MediatorController {
-    protected static MainMenuController mainMenuController;
+    protected static MainController mainController;
+    protected static AdvisorController advisorController;
     protected static TabRegisterController tabRegisterController;
     protected static TabAdvisorAlanController tabAdvisorAlanController;
     protected static TabAdvisorBrendanController tabAdvisorBrendanController;
@@ -9,8 +10,11 @@ public abstract class MediatorController {
     protected static TabAdvisorRyanController tabAdvisorRyanController;
     protected static TabDataController tabDataController;
 
-    public static void setMainMenuController(MainMenuController mainMenuController) {
-        MediatorController.mainMenuController = mainMenuController;
+    public static void setMainMenuController(MainController mainController) {
+        MediatorController.mainController = mainController;
+    }
+    public static void setAdvisorController(AdvisorController advisorController) {
+        MediatorController.advisorController = advisorController;
     }
     public static void setTabRegisterController(TabRegisterController tabRegisterController) {
         MediatorController.tabRegisterController = tabRegisterController;

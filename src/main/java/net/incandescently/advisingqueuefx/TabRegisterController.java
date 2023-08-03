@@ -47,19 +47,19 @@ public class TabRegisterController {
 
             Student student = new Student(firstName, lastName, email);
             if (advisor.equals("CJ")) {
-                MediatorController.mainMenuController.cjAQ.addStudent(student);
+                MediatorController.mainController.cjAQ.addStudent(student);
                 validAdvisor = true;
             }
             if (advisor.equals("Brendan")) {
-                MediatorController.mainMenuController.brendanAQ.addStudent(student);
+                MediatorController.mainController.brendanAQ.addStudent(student);
                 validAdvisor = true;
             }
             if (advisor.equals("Alan")) {
-                MediatorController.mainMenuController.alanAQ.addStudent(student);
+                MediatorController.mainController.alanAQ.addStudent(student);
                 validAdvisor = true;
             }
             if (advisor.equals("Ryan")) {
-                MediatorController.mainMenuController.ryanAQ.addStudent(student);
+                MediatorController.mainController.ryanAQ.addStudent(student);
                 validAdvisor = true;
             }
             else if (!validAdvisor) {
