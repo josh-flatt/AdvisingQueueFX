@@ -1,9 +1,7 @@
 package net.incandescently.advisingqueuefx;
 
-import advisingQueue.AdvisorQueue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
@@ -25,17 +23,17 @@ public class TabAdvisorBrendanController {
     private Label advBrendanMeetingTimeLabel;
     @FXML
     protected void onAdvBrendanRefreshButtonClicked(ActionEvent event) {
-        MediatorController.advisorController.advisorRefreshButtonClicked(MediatorController.mainMenuController.brendanAQ, advBrendanQueueCtLabel, advBrendanMeetingStudentLabel,
+        MediatorController.advisorController.advisorRefreshButtonClicked(MediatorController.mainController.brendanAQ, advBrendanQueueCtLabel, advBrendanMeetingStudentLabel,
                 advBrendanMeetingStudentEmailLabel, advBrendanMeetingTimeLabel);
     }
     @FXML
     protected void onAdvBrendanStartMeetingButtonClicked(ActionEvent event) {
-        MediatorController.advisorController.advisorStartMeetingButtonClicked(MediatorController.mainMenuController.brendanAQ, advBrendanQueueCtLabel, advBrendanMeetingStudentLabel,
+        MediatorController.advisorController.advisorStartMeetingButtonClicked(MediatorController.mainController.brendanAQ, advBrendanQueueCtLabel, advBrendanMeetingStudentLabel,
                 advBrendanMeetingStudentEmailLabel, advBrendanMeetingTimeLabel);
     }
     @FXML
     protected void onAdvBrendanEndMeetingButtonClicked(ActionEvent event) {
-        MediatorController.advisorController.advisorEndMeetingButtonClicked(MediatorController.mainMenuController.brendanAQ, advBrendanQueueCtLabel, advBrendanMeetingStudentLabel,
+        MediatorController.advisorController.advisorEndMeetingButtonClicked(MediatorController.mainController.brendanAQ, advBrendanQueueCtLabel, advBrendanMeetingStudentLabel,
                 advBrendanMeetingStudentEmailLabel, advBrendanMeetingTimeLabel);
     }
 

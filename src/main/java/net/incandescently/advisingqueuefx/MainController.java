@@ -8,7 +8,7 @@ import advisingQueue.*;
  * CS 200 Final Project
  * 10 December 2022
  */
-public class MainMenuController {
+public class MainController {
 
     protected AdvisingQueueSystem advisingQueueSystem = new AdvisingQueueSystem();
     protected AdvisorQueue cjAQ = advisingQueueSystem

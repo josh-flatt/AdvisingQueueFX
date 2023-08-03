@@ -1,9 +1,7 @@
 package net.incandescently.advisingqueuefx;
 
-import advisingQueue.AdvisorQueue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
@@ -25,17 +23,17 @@ public class TabAdvisorAlanController {
     private Label advAlanMeetingTimeLabel;
     @FXML
     protected void onAdvAlanRefreshButtonClicked(ActionEvent event) {
-        MediatorController.advisorController.advisorRefreshButtonClicked(MediatorController.mainMenuController.alanAQ, advAlanQueueCtLabel, advAlanMeetingStudentLabel,
+        MediatorController.advisorController.advisorRefreshButtonClicked(MediatorController.mainController.alanAQ, advAlanQueueCtLabel, advAlanMeetingStudentLabel,
                 advAlanMeetingStudentEmailLabel, advAlanMeetingTimeLabel);
     }
     @FXML
     protected void onAdvAlanStartMeetingButtonClicked(ActionEvent event) {
-        MediatorController.advisorController.advisorStartMeetingButtonClicked(MediatorController.mainMenuController.alanAQ, advAlanQueueCtLabel, advAlanMeetingStudentLabel,
+        MediatorController.advisorController.advisorStartMeetingButtonClicked(MediatorController.mainController.alanAQ, advAlanQueueCtLabel, advAlanMeetingStudentLabel,
                 advAlanMeetingStudentEmailLabel, advAlanMeetingTimeLabel);
     }
     @FXML
     protected void onAdvAlanEndMeetingButtonClicked(ActionEvent event) {
-        MediatorController.advisorController.advisorEndMeetingButtonClicked(MediatorController.mainMenuController.alanAQ, advAlanQueueCtLabel, advAlanMeetingStudentLabel,
+        MediatorController.advisorController.advisorEndMeetingButtonClicked(MediatorController.mainController.alanAQ, advAlanQueueCtLabel, advAlanMeetingStudentLabel,
                 advAlanMeetingStudentEmailLabel, advAlanMeetingTimeLabel);
     }
 

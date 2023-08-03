@@ -40,7 +40,7 @@ public class TabDataController {
     }
     @FXML
     protected void onExportDataButtonPressed(ActionEvent event) {
-        MediatorController.mainMenuController.advisingQueueSystem.exportMeetings();
+        MediatorController.mainController.advisingQueueSystem.exportMeetings();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setContentText("Data Successfully exported.");
@@ -48,7 +48,7 @@ public class TabDataController {
     }
     protected void setDataTableAttributes() {
         tableView.setItems(null);
-        tableView.setItems(FXCollections.observableArrayList(MediatorController.mainMenuController.advisingQueueSystem.getMeetings()));
+        tableView.setItems(FXCollections.observableArrayList(MediatorController.mainController.advisingQueueSystem.getMeetings()));
         meetingIDColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableID()));
         studentNameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStudentFullName()));
         studentEmailColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTableStudentEmail()));
