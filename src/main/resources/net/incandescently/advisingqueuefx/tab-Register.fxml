@@ -27,7 +27,6 @@
             <Font size="36.0" />
         </font>
     </TextField>
-    <!--                                <ComboBox fx:id="studentAdvisorSelection" editable="true" layoutX="556.0" layoutY="435.0" prefHeight="57.0" prefWidth="230.0" promptText="Select an Advisor" />-->
     <Button fx:id="studentSubmitButton" layoutX="248.0" layoutY="412.0" mnemonicParsing="false" onAction="#onStudentSubmitButtonClicked" text="Get in Line!">
         <font>
             <Font size="48.0" />
